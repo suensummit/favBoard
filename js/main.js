@@ -1,4 +1,5 @@
 var dataItems = data;
+
 var card = d3.select('#board-list')
             .selectAll('div')
             .data(dataItems)
@@ -30,3 +31,20 @@ var card = d3.select('#board-list')
         .on('click', function() {
             console.log('clicked');
         });
+
+var SCROLL_UNIT = 240;
+var scrollStop = null;
+
+$('.scroll_left').on('click', function() {
+	var target = $('div:first-child', $(this).parent());
+	var current = $(target).scrollLeft();
+	var step = SCROLL_UNIT;
+	$(target).scrollLeft(current - step);
+});
+
+$('.scroll_right').on('click', function() {
+	var target = $('div:first-child', $(this).parent());
+	var current = $(target).scrollLeft();
+	var step = SCROLL_UNIT;
+	$(target).scrollLeft(current + step);
+});
