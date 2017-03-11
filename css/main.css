@@ -1,9 +1,10 @@
 .cover-container {
-    height: 80px;
+    height: 100px;
     width: 100%;
     white-space: nowrap;
     overflow-x: scroll;
     overflow-y: hidden;
+    
 }
 .cover-item {
     position: relative;
