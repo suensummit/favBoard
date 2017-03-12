@@ -164,3 +164,27 @@
     right: 0;
     position: absolute
 }
+
+.navbar.navbar-inverse.navbar-fixed-top {
+    background-color: #003580;
+    background-image: linear-gradient(to bottom, #003580 0, #003580 100%);
+}
+
+#slide-in-card {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 480px;
+    height: 80vh;
+    background-color: #003580;
+    transition: all 3s, ease-in;
+    z-index: 15;
+}
+
+.card_close {
+    cursor: pointer;
+}
+
+.card_open {
+    cursor: pointer;
+}
