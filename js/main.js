@@ -96,7 +96,7 @@ function drawBoard(filterFunc) {
             .classed('glyphicon', true)
             .classed('glyphicon-search', true)
             .on('click', function(d) {
-            	openCard(d.item_photo);
+            	openCard(d);
             });
 
 }
@@ -131,13 +131,13 @@ $('#slide-in-card .close').on('click', function() {
 	closeCard();
 })
 
-function openCard(imgUrl) {
+function openCard(obj) {
 	var deferred = $.Deferred();
 
 	$('html').css('overflow-y', 'hidden');
 	$('#slide-in-card').removeClass('hidden');
 	$('#slide-in-card .content').scrollTop(0);
-    $('#slide-in-panel-main-img').attr('src', imgUrl);
+    $('#slide-in-panel-main-img').attr('src', obj.item_photo);
 	setTimeout(function() {
 		$('#slide-in-card').addClass('active');
 		// Trigger the open event to execute other function
