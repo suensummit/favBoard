@@ -138,6 +138,7 @@ function openCard(obj) {
 	$('#slide-in-card').removeClass('hidden');
 	$('#slide-in-card .content').scrollTop(0);
     $('#slide-in-panel-main-img').attr('src', obj.item_photo);
+    $('#slide-in-hotel-name').text(obj.item_name);
 	setTimeout(function() {
 		$('#slide-in-card').addClass('active');
 		// Trigger the open event to execute other function
