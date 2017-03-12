@@ -91,6 +91,7 @@ function drawBoard(filterFunc) {
             .classed('glyphicon', true)
             .classed('glyphicon-search', true)
             .on('click', function() {
+            	openCard();
                 console.log('clicked');
             });
 
@@ -118,9 +119,9 @@ $('.scroll_right').on('click', function() {
 	$(target).scrollLeft(current + step);
 });
 
-$('.card-hover-text').on('click', function() {
-	openCard();
-})
+// $('.card-hover-text').on('click', function() {
+// 	openCard();
+// })
 
 $('#slide-in-card .close').on('click', function() {
 	closeCard();
@@ -139,7 +140,7 @@ function openCard() {
 		// After the animation, the close button will show
 		setTimeout(function() {
 			$('#slide-in-card .close').show();
-		}, 500);
+		}, 0);
 		deferred.resolve();
 	// Delay a little time to start the animate
 	}, 20);
@@ -158,7 +159,7 @@ function closeCard() {
 		// After the animation finished.
 		$('#slide-in-card').trigger('close');
 		deferred.resolve();
-	}, 500);
+	}, 0);
 
 	return deferred.promise;
 }
