@@ -172,12 +172,21 @@
 
 #slide-in-card {
     position: fixed;
-    top: 0;
+    top: 50px;
     right: 0;
-    width: 480px;
-    height: 80vh;
+    width: 50%;
+    height: 100vh;
     background-color: #003580;
+    opacity: 0.5; 
     transition: all 3s, ease-in;
+    z-index: 15;
+}
+
+.close {
+    position: fixed;
+    top: 50px;
+    right: 48%;
+    background-image: "/images/close-button.png";
     z-index: 15;
 }
 

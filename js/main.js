@@ -98,7 +98,7 @@ $('.card-hover-text').on('click', function() {
 	openCard();
 })
 
-$('html').on('click', function() {
+$('#slide-in-card .close').on('click', function() {
 	closeCard();
 })
 
