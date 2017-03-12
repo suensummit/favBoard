@@ -48,3 +48,48 @@ $('.scroll_right').on('click', function() {
 	var step = SCROLL_UNIT;
 	$(target).scrollLeft(current + step);
 });
+
+$('.card-hover-text').on('click', function() {
+	openCard();
+})
+
+$('html').on('click', function() {
+	closeCard();
+})
+
+function openCard() {
+	var deferred = $.Deferred();
+
+	$('html').css('overflow-y', 'hidden');
+	$('#slide-in-card').removeClass('hidden');
+	$('#slide-in-card .content').scrollTop(0);
+	setTimeout(function() {
+		$('#slide-in-card').addClass('active');
+		// Trigger the open event to execute other function
+		$('#slide-in-card').trigger('open');
+		// After the animation, the close button will show
+		setTimeout(function() {
+			$('#slide-in-card .close').show();
+		}, 500);
+		deferred.resolve();
+	// Delay a little time to start the animate
+	}, 20);
+
+	return deferred.promise;
+}
+
+function closeCard() {
+	var deferred = $.Deferred();
+
+	$('#slide-in-card .close').hide();
+	$('#slide-in-card').removeClass('active');
+	setTimeout(function() {
+		$('#slide-in-card').addClass('hidden');
+		$('html').css('overflow-y', 'auto');
+		// After the animation finished.
+		$('#slide-in-card').trigger('close');
+		deferred.resolve();
+	}, 500);
+
+	return deferred.promise;
+}
