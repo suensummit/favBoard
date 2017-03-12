@@ -16,7 +16,12 @@ var tags = d3.select('#tags-panel')
             .data(tagData)
             .enter()
             .append('div')
-            .classed('cover-item', true);
+            .classed('cover-item', true)
+            .on('click', function(d) {
+        drawBoard(function(cardItem) {
+            return cardItem.item_fgcolor === d.label;
+        });
+    });
 
 tags.append('img')
     .attr('src', function(d) {
@@ -27,43 +32,50 @@ tags .append('h2').text(function(d) {
     return d.label;
 })
 
+function drawBoard(filterFunc) {
 
+    d3.select('#board-list').selectAll('div').remove();
 
-var dataItems = data.filter(function(d) {
-    return (d.item_fgcolor === 'Black');
+    var cardData = data.filter(filterFunc);
+
+    var card = d3.select('#board-list')
+                .selectAll('div')
+                .data(cardData)
+                .enter()
+                .append('div')
+                .classed('board-item', true);
+
+        card.append('img')
+            .attr('src', function(d) {return d.item_photo;})
+            .classed('card-image', true);
+
+        card.append('div')
+            .classed('bottom-right', true)
+            .append('div')
+            .classed('card-hover-text', true)
+            .text(function(d) { return d.item_name +'/\n '+ d.item_city;});
+
+        card.append('div')
+            .classed('top-right', true)
+            .append('div')
+            .classed('glyphicon', true)
+            .classed('glyphicon-heart', true);
+
+        card.append('div')
+            .classed('top-right-2', true)
+            .append('div')
+            .classed('glyphicon', true)
+            .classed('glyphicon-search', true)
+            .on('click', function() {
+                console.log('clicked');
+            });
+
+}
+
+drawBoard(function() {
+    return true;
 });
 
-var card = d3.select('#board-list')
-            .selectAll('div')
-            .data(dataItems)
-            .enter()
-            .append('div')
-            .classed('board-item', true);
-
-    card.append('img')
-        .attr('src', function(d) {return d.item_photo;})
-        .classed('card-image', true);
-
-    card.append('div')
-        .classed('bottom-right', true)
-        .append('div')
-        .classed('card-hover-text', true)
-        .text(function(d) { return d.item_name +'/\n '+ d.item_city;});
-
-    card.append('div')
-        .classed('top-right', true)
-        .append('div')
-        .classed('glyphicon', true)
-        .classed('glyphicon-heart', true);
-
-    card.append('div')
-        .classed('top-right-2', true)
-        .append('div')
-        .classed('glyphicon', true)
-        .classed('glyphicon-search', true)
-        .on('click', function() {
-            console.log('clicked');
-        });
 
 var SCROLL_UNIT = 240;
 var scrollStop = null;
