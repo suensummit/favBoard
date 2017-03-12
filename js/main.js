@@ -6,6 +6,16 @@ var colorTagMap = data.reduce(function(accu, cur){
     return accu;
 }, {});
 
+var colorTagData = Object.keys(colorTagMap).map(function(tagLabel) {
+    return {
+        label: tagLabel, 
+        searchInput: 'color: ' + tagLabel.toLocaleLowerCase(),
+        imgUrl: colorTagMap[tagLabel], 
+        filterFunc: function(item){
+            return item.item_fgcolor === tagLabel;
+        }};
+});
+
 // city tag cards
 var cityTagMap = data.reduce(function(accu, cur){
     if(!!cur.item_city && 
@@ -15,15 +25,6 @@ var cityTagMap = data.reduce(function(accu, cur){
     return accu;
 }, {});
 
-var panelTagData = Object.keys(colorTagMap).map(function(tagLabel) {
-    return {
-        label: tagLabel, 
-        searchInput: 'color: ' + tagLabel.toLocaleLowerCase(),
-        imgUrl: colorTagMap[tagLabel], 
-        filterFunc: function(item){
-            return item.item_fgcolor === tagLabel;
-        }};
-});
 
 var cityTagData = Object.keys(cityTagMap).map(function(tagLabel){
     return {
@@ -36,7 +37,7 @@ var cityTagData = Object.keys(cityTagMap).map(function(tagLabel){
     };
 });
 
-panelTagData = panelTagData.concat(cityTagData);
+var panelTagData = colorTagData.concat(cityTagData);
 
 var panelTags = d3.select('#tags-panel')
             .selectAll('div')
