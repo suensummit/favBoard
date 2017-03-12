@@ -1,4 +1,37 @@
-var dataItems = data;
+var tagMap = data.reduce(function(accu, cur){
+    if (!!cur.item_fgcolor && 
+        !cur.hasOwnProperty(cur.item_fgcolor)) {
+        accu[cur.item_fgcolor] = cur.item_photo;
+    }
+    return accu;
+}, {});
+
+var tagData = Object.keys(tagMap).map(function(tagLabel) {
+    return {label: tagLabel, imgUrl: tagMap[tagLabel]};
+})
+
+
+var tags = d3.select('#tags-panel')
+            .selectAll('div')
+            .data(tagData)
+            .enter()
+            .append('div')
+            .classed('cover-item', true);
+
+tags.append('img')
+    .attr('src', function(d) {
+        return d.imgUrl;
+    });
+
+tags .append('h2').text(function(d) {
+    return d.label;
+})
+
+
+
+var dataItems = data.filter(function(d) {
+    return (d.item_fgcolor === 'Black');
+});
 
 var card = d3.select('#board-list')
             .selectAll('div')
