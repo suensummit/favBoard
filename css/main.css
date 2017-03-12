@@ -215,6 +215,21 @@
     z-index: 15;
 }
 
+.card-item-name {
+    position: relative;
+    /*top: 32px;*/
+    left: 32px;
+    color: #003580;
+    font-size: 4em;
+}
+
+.card-item-city {
+    position: relative;
+    left: 32px;
+    color: #003580;
+    font-size: 4em;
+}
+
 .glyphicon {
     color: #009FE3;
     font-size: 1.5em;
@@ -250,9 +265,4 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-}
-
-.slide-in-hotel-name {
-    padding-left: 60px; 
-    font-size: 30px;
 }
