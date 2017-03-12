@@ -6,6 +6,16 @@ var colorTagMap = data.reduce(function(accu, cur){
     return accu;
 }, {});
 
+var colorTagData = Object.keys(colorTagMap).map(function(tagLabel) {
+    return {
+        label: tagLabel, 
+        searchInput: 'color: ' + tagLabel.toLocaleLowerCase(),
+        imgUrl: colorTagMap[tagLabel], 
+        filterFunc: function(item){
+            return item.item_fgcolor === tagLabel;
+        }};
+});
+
 // city tag cards
 var cityTagMap = data.reduce(function(accu, cur){
     if(!!cur.item_city && 
@@ -14,20 +24,12 @@ var cityTagMap = data.reduce(function(accu, cur){
     }
     return accu;
 }, {});
-console.log(cityTagMap);
 
-var panelTagData = Object.keys(colorTagMap).map(function(tagLabel) {
-    return {
-        label: tagLabel, 
-        imgUrl: colorTagMap[tagLabel], 
-        filterFunc: function(item){
-            return item.item_fgcolor === tagLabel;
-        }};
-});
 
 var cityTagData = Object.keys(cityTagMap).map(function(tagLabel){
     return {
         label: tagLabel,
+        searchInput: 'city: ' + tagLabel.toLocaleLowerCase(),
         imgUrl: cityTagMap[tagLabel],
         filterFunc: function(item) {
             return item.item_city === tagLabel;
@@ -35,15 +37,18 @@ var cityTagData = Object.keys(cityTagMap).map(function(tagLabel){
     };
 });
 
-panelTagData = panelTagData.concat(cityTagData);
+var panelTagData = colorTagData.concat(cityTagData);
 
 var panelTags = d3.select('#tags-panel')
             .selectAll('div')
             .data(panelTagData)
             .enter()
             .append('div')
-            .classed('cover-item', true)
-            .on('click', function(d) {
+            .classed('cover-item', true);
+
+    panelTags.on('click', function(d) {
+        d3.select('#searchBar').attr('value', d.searchInput);
+        panelTags.classed('selected', function(handle){ return handle === d;});
         drawBoard(d.filterFunc);
     });
 
