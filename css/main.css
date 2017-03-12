@@ -76,7 +76,6 @@
 }
 
 .board-item {
-    margin-bottom: 1.875em; /* 15px 30px */
     -webkit-column-break-inside: avoid;
     -moz-column-break-inside: avoid;
     column-break-inside: avoid;
@@ -85,6 +84,7 @@
 }
 
 .card-image {
+    margin-bottom: 1.875em; /* 15px 30px */
     opacity: 1;
     display: block;
     width: 100%;
