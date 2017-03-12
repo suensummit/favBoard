@@ -208,10 +208,9 @@
     position: fixed;
     top: 50px;
     right: 0;
-    width: 450px;
+    width: 700px;
     height: 100vh;
-    background-color: #009FE3;
-    opacity: 0.7; 
+    background-color: #fff;
     transition: all 5s, linear;
     z-index: 15;
 }
@@ -226,7 +225,7 @@
     width: 32px;
     height: 32px;
     top: 50px;
-    right: 418px;
+    right: 658px;
     opacity: 1.0; 
     color: #009FE3;
     z-index: 20;
