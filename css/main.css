@@ -238,3 +238,16 @@
 .card_open {
     cursor: pointer;
 }
+
+.slide-in-images {
+    width: 400px;
+    height: 400px;
+    padding-top: 30px;
+    padding-left: -10px; 
+}
+
+.slide-in-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
